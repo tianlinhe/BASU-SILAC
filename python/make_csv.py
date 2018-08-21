@@ -51,6 +51,12 @@ def make_csv(input):
                 df.iloc[x]['Description'] = df_C.loc[y]['Description']
                 df.iloc[x]['H/L in C'] = df_C.loc[y]['Abundance Ratio: (Heavy) / (Light)']
                 break
+    for x in range (len(df)):
+        description = df.iloc[x]['Description'].split(" ")
+        for item in description:
+            if item[0:2] == 'GN':
+                df.iloc[x]['Gene Name'] = item[3:]
+                break
     
     print (df)
 make_csv("~/Documents/MS_rawdata/IFNAR1-5xlinker-BASU/20180821.xlsx")
